@@ -4,7 +4,7 @@
     "explain": "シンプルなかんばんビューを表示するプラグインです。",
     "uuid":  "648c8d9e-dd0d-4926-9bde-968f6c748abc",
     "author":  "momijiina",
-    "version": "1.0.0",
+    "version": "1.0.5",
     "plugin_type": "view",
     "route": [
         {
