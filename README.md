@@ -1,6 +1,8 @@
 # Exmentかんばんビューv2
 Exment用のかんばんビューです。
 
+まだ、修正中のためバグだらけの可能性があります。使用は自己責任でお願いします。
+
 公式プラグインではありません。
 ![ss1](https://github.com/user-attachments/assets/099e359a-0c42-4993-a12a-5ee86fdc9a3e)
 
