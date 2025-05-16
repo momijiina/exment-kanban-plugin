@@ -2,6 +2,7 @@
 Exment用のかんばんビューです。
 
 公式プラグインではありません。
+![ss1](https://github.com/user-attachments/assets/099e359a-0c42-4993-a12a-5ee86fdc9a3e)
 
 | 列の名前 | 列種類 |
 | --- | --- |
