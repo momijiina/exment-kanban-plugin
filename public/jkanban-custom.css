@@ -43,6 +43,52 @@
   transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1); /* ホバー時のアニメーション準備 */
 }
 
+/* アバター左配置のためのフレックスレイアウト */
+.kanban-item-flex-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.kanban-item-content {
+  flex: 1;
+  min-width: 0; /* テキストオーバーフロー防止 */
+}
+
+/* アバター表示のスタイル */
+.kanban-item-avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0; /* アバターサイズ固定 */
+  margin-top: 2px; /* タイトルとの位置調整 */
+}
+
+.kanban-avatar-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.kanban-avatar-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kanban-avatar-initial {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
 #kanban .kanban-container .kanban-item:hover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); /* ホバー時により濃い影 */
 }
@@ -53,24 +99,32 @@
   word-wrap: break-word;
   font-size: 0.9em;
   line-height: 1.4;
-  color: #333;
+  color: #000; /* より濃い色に変更 */
+  font-weight: bold; /* 太字に変更 */
 }
 
-/* カード内アイコンのスタイル */
+/* カード内アイコンのスタイル - 横並び表示に対応 */
 .kanban-container .kanban-item-icon {
   position: absolute;
   right: 10px; /* 右端からの位置調整 */
-  top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
+  top: 10px; /* 上端からの位置調整 */
   display: flex;
-  flex-direction: column; /* アイコンを縦に並べる場合 */
+  flex-direction: column; /* アイコン行を縦に並べる場合 */
+}
+
+/* アイコン行の横並びスタイル */
+.kanban-container .kanban-item-icon-row {
+  display: flex;
+  flex-direction: row; /* アイコンを横に並べる */
+  align-items: center;
+  gap: 8px; /* アイコン間の間隔 */
 }
 
 .kanban-container .kanban-item-icon i {
   padding: 4px;
   color: #757575; /* アイコンの色を少し薄く */
   transition: color 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .kanban-container .kanban-item-icon i:hover {
@@ -159,4 +213,150 @@
 /* ドロップ可能エリアのハイライト (仮) */
 .gu-transit {
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* タグ関連のスタイル - 横並び表示に対応 */
+.kanban-item-tags-container {
+  margin-top: 8px;
+  border-top: 1px solid #eee;
+  padding-top: 8px;
+}
+
+/* タグ行の横並びスタイル */
+.kanban-item-tags-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.kanban-item-tags-label {
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #666;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.kanban-item-tags-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex: 1;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 0.75em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
+
+.tag-chip:hover {
+  background-color: #e0e0e0;
+}
+
+.tag-chip.tag-selected {
+  background-color: #e6f7ff;
+  color: #1890ff;
+  border-color: #91d5ff;
+}
+
+.tag-chip.tag-edit-button {
+  background-color: #f9f9f9;
+  color: #999;
+  border-style: dashed;
+}
+
+.tag-chip.tag-edit-button:hover {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.no-tags-message {
+  font-size: 0.75em;
+  color: #999;
+  font-style: italic;
+  margin-right: 8px;
+}
+
+/* タグ選択ポップアップのスタイル */
+.tag-selection-popup {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 250px;
+  max-height: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-selection-popup-header {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-selection-popup-close {
+  cursor: pointer;
+  font-size: 18px;
+  color: #999;
+}
+
+.tag-selection-popup-close:hover {
+  color: #666;
+}
+
+.tag-selection-popup-content {
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag-selection-popup-footer {
+  padding: 10px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.tag-selection-popup-footer button {
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #d9d9d9;
+  background-color: white;
+  font-size: 0.9em;
+}
+
+.tag-selection-popup-apply {
+  background-color: #1890ff !important;
+  color: white;
+  border-color: #1890ff !important;
+}
+
+.tag-selection-popup-apply:hover {
+  background-color: #40a9ff !important;
+  border-color: #40a9ff !important;
+}
+
+.tag-selection-popup-cancel:hover {
+  background-color: #f5f5f5;
 }
